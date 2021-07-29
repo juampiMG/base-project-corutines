@@ -1,0 +1,16 @@
+<resources>
+    <string name="oh_hell">¡Oh, hell!</string>
+    <string name="default_error">An unexpected error has occurred, please try again later</string>
+    <string name="accept">Accept</string>
+    <string name="count_back_exit_message">Press again the back button to exit</string>
+    <string name="hello_fragment">Hello Fragment!</string>
+    <string name="hello_activity">Hello Activity!</string>
+    <string name="sample_button">Basic Child</string>
+    <string name="motion_button">Motion Sample</string>
+    <string name="button_translation">Translation</string>
+    <string name="button_rotation">Rotation</string>
+    <string name="error_title_oops">Ups!</string>
+    <string name="ok">OK</string>
+    <string name="error_server">There was a problem connecting to the server. Please, verify your
+    Internet connection and try again.</string>
+</resources>

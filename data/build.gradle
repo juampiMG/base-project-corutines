@@ -1,0 +1,46 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'dagger.hilt.android.plugin'
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+    }
+
+    flavorDimensions "tier"
+
+    productFlavors {
+        prod {
+            dimension "tier"
+            buildConfigField 'String', 'API_URL', '"http://www.speedrun.com/api/v1/"'
+            buildConfigField "String", "APP_VERSION_NAME", "\"" + rootProject.ext.androidVersionName + "\""
+        }
+        stage {
+            dimension "tier"
+            buildConfigField 'String', 'API_URL', '"http://www.speedrun.com/api/v1/"'
+            buildConfigField "String", "APP_VERSION_NAME", "\"" + rootProject.ext.androidVersionName + "\""
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(':domain')
+
+    implementation deps.data.implementation
+    annotationProcessor deps.data.annotationProcessor
+    compileOnly deps.data.compileOnly
+    testImplementation deps.data.testImplementation
+    kapt deps.data.kapt
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
+
+}
+repositories {
+    mavenCentral()
+}

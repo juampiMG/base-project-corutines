@@ -1,0 +1,34 @@
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="NewApi">
+
+    <!-- Content styles -->
+
+    <style name="BaseToolbar">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:minHeight">?attr/actionBarSize</item>
+        <item name="android:background">@android:color/transparent</item>
+    </style>
+
+    <!-- ========================================================================= -->
+
+    <style name="Toolbar" parent="BaseToolbar">
+
+    </style>
+
+    <style name="Toolbar.Onboarding">
+
+    </style>
+
+    <style name="Toolbar.Tip">
+        <item name="navigationIcon">@null</item>
+    </style>
+
+    <style name="Toolbar.Sample">
+        <item name="navigationIcon">@drawable/back_button_selector</item>
+    </style>
+
+    <style name="Toolbar.Sample.Detail">
+        <item name="android:background">@android:color/transparent</item>
+        <item name="navigationIcon">@drawable/back_button_selector</item>
+    </style>
+</resources>

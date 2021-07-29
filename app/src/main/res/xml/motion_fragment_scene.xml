@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:motion="http://schemas.android.com/apk/res-auto">
+
+    <Transition
+        motion:constraintSetEnd="@+id/end_translation"
+        motion:constraintSetStart="@id/start"
+        motion:duration="1000">
+       <OnClick
+           motion:targetId="@+id/button_translation"
+           />
+    </Transition>
+
+    <Transition
+        motion:constraintSetEnd="@+id/end_rotation"
+        motion:constraintSetStart="@id/start"
+        motion:duration="500">
+        <OnClick
+            motion:targetId="@+id/button_rotation"
+            />
+    </Transition>
+
+    <ConstraintSet android:id="@+id/start">
+        <Constraint
+            android:layout_height="wrap_content"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintTop_toTopOf="parent"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            android:layout_width="wrap_content"
+            android:id="@+id/button_translation" />
+        <Constraint
+            android:layout_height="wrap_content"
+            motion:layout_constraintTop_toTopOf="parent"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="wrap_content"
+            android:id="@+id/button_rotation" />
+        <Constraint
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            motion:layout_constraintGuide_end="391dp"
+            android:id="@+id/guideline2"
+            motion:layout_constraintEnd_toEndOf="parent" />
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/end_translation">
+
+        <Constraint android:id="@+id/button_translation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/button_translation"
+            android:layout_marginStart="20dp"
+            android:layout_marginBottom="20dp"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintStart_toStartOf="parent" />
+
+        <Constraint android:id="@+id/button_rotation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/button_rotation"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="20dp"
+            motion:layout_constraintTop_toTopOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent" />
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/end_rotation">
+
+        <Constraint android:id="@+id/button_translation" >
+            <Transform
+                android:rotation="45"
+                android:rotationY="10"
+                android:translationZ="20dp" />
+        </Constraint>
+
+        <Constraint android:id="@+id/button_rotation" >
+            <Transform
+                android:rotation="45"
+                android:rotationY="10"
+                android:translationZ="20dp" />
+        </Constraint>
+    </ConstraintSet>
+</MotionScene>

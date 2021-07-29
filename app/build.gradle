@@ -1,0 +1,126 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'dagger.hilt.android.plugin'
+
+android {
+
+    dexOptions {
+        preDexLibraries true
+        maxProcessCount 8
+        javaMaxHeapSize "4g"
+    }
+
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+
+        applicationId rootProject.ext.androidApplicationId
+        versionCode rootProject.ext.androidVersionCode
+        versionName rootProject.ext.androidVersionName
+        testInstrumentationRunner rootProject.ext.testInstrumentationRunner
+        testApplicationId rootProject.ext.testApplicationId
+
+        multiDexEnabled true
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                includeCompileClasspath = true
+            }
+        }
+    }
+
+    buildTypes {
+        debug {
+            minifyEnabled false
+            resValue "string", "app_name", "base-project-corutines Deb"
+        }
+        release {
+            minifyEnabled false // enable to use proguard
+            shrinkResources false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            resValue "string", "app_name", "base-project-corutines"
+        }
+    }
+
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
+    }
+
+    packagingOptions {
+        exclude 'META-INF/services/javax.annotation.processing.Processor'
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/rxjava.properties'
+        exclude 'META-INF/ASL2.0'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE'
+        exclude 'LICENSE.txt'
+        exclude 'asm-license.txt'
+    }
+
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+            unitTests.returnDefaultValues = true
+        }
+    }
+
+    compileOptions {
+        targetCompatibility 1.8
+        sourceCompatibility 1.8
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
+
+    androidExtensions {
+        experimental = true
+    }
+
+    kapt {
+        correctErrorTypes = true
+    }
+
+    flavorDimensions "tier"
+
+    productFlavors {
+        prod {
+            buildConfigField 'String', 'API_URL', '"http://www.speedrun.com/api/v1/"'
+            applicationId rootProject.ext.androidApplicationId
+            buildConfigField "String", "APP_VERSION_NAME", "\"" + rootProject.ext.androidVersionName + "\""
+            dimension "tier"
+        }
+
+        stage {
+            buildConfigField 'String', 'API_URL', '"http://www.speedrun.com/api/v1/"'
+            applicationId rootProject.ext.androidApplicationId + ".stage"
+            buildConfigField "String", "APP_VERSION_NAME", "\"" + rootProject.ext.androidVersionName + "\""
+            dimension "tier"
+        }
+
+    }
+}
+
+dependencies {
+    implementation fileTree(include: '*.jar', dir: 'libs')
+    implementation project(':domain')
+    implementation project(':data')
+
+    implementation deps.app.implementation
+    annotationProcessor deps.app.annotationProcessor
+    compileOnly deps.app.compileOnly
+    testImplementation deps.app.testImplementation
+    kapt deps.app.kapt
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
+
+}
+repositories {
+    mavenCentral()
+}

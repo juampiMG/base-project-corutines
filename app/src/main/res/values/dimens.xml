@@ -1,0 +1,24 @@
+<resources>
+    <!-- TEXT DIMENSIONS -->
+    <dimen name="text_size_8">8dp</dimen>
+    <dimen name="text_size_10">10dp</dimen>
+    <dimen name="text_size_12">12dp</dimen>
+    <dimen name="text_size_14">14dp</dimen>
+    <dimen name="text_size_16">16dp</dimen>
+    <dimen name="text_size_20">20dp</dimen>
+    <dimen name="text_size_40">40dp</dimen>
+
+    <!-- HEIGHT -->
+    <dimen name="x_height_55">55dp</dimen>
+
+    <!-- PADDING -->
+    <dimen name="x_padding_8">8dp</dimen>
+    <dimen name="x_padding_5">5dp</dimen>
+
+    <!-- MARGIN -->
+    <dimen name="x_margin_1">1dp</dimen>
+    <dimen name="x_margin_5">5dp</dimen>
+    <dimen name="x_margin_8">8dp</dimen>
+    <dimen name="x_margin_10">10dp</dimen>
+
+</resources>

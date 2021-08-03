@@ -1,22 +1,22 @@
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
-import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.*
 import retrofit2.Response
+import kotlin.coroutines.CoroutineContext
 
 
-private val onStartStub: () -> Unit = {}
-private val onNextStub: (Any) -> Unit = {}
-private val onErrorStub: (error: String?) -> Unit = { _ -> }
+private val doOnStart: () -> Unit = {}
+private val doOnSuccess: (Any) -> Unit = {}
+private val doOnError: (error: String?) -> Unit = { _ -> }
 
 suspend fun <T : Any> retrofitCallLaunch(
+        dispatcher: CoroutineContext = Dispatchers.Main,
         asyncCall: suspend () -> Response<T>,
-        onStart: () -> Unit = onStartStub,
-        onError: (error: String?) -> Unit = onErrorStub,
-        onSuccess: (T) -> Unit = onNextStub
+        onStart: () -> Unit = doOnStart,
+        onError: (error: String?) -> Unit = doOnError,
+        onSuccess: (T) -> Unit = doOnSuccess
 ) {
     coroutineScope {
         onStart()
-        val result = async(Dispatchers.Main) {
+        val result = async(dispatcher) {
             asyncCall
         }
         if ((result.await().invoke()).isSuccessful) {

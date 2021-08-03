@@ -4,7 +4,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.jp.app.common.viewModel.BaseActivityViewModel
 import com.jp.domain.interactor.IGetSampleBooleanUseCase
-import com.jp.domain.interactor.IGetSampleUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
